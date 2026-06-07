@@ -1,0 +1,24 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+
+<h2>Calorie Details</h2>
+
+<p><b>Food:</b> {{ data.item_name }}</p>
+<p><b>Calories:</b> {{ data.calorie }}</p>
+<p><b>Date:</b> {{ data.created_by }}</p>
+
+<hr>
+
+<a href="?edit=1" class="btn btn-primary">
+    Edit
+</a>
+
+<form method="POST" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" name="delete_calorie" class="btn btn-danger">
+        Delete
+    </button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>Dashboard</h3>
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card p-3">
+                <small>Consumed</small>
+                <h5>{{ consumed_calories }} kcal</h5>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3">
+                <small>Required</small>
+                <h5>{{ required_calories|floatformat:0 }} kcal</h5>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3">
+                <small>Difference</small>
+                <h5>{{ less_more|floatformat:0 }} kcal</h5>
+            </div>
+        </div>
+
+    </div>
+
+    <p><strong>Suggestion:</strong> {{ suggestion }}</p>
+
+    <table class="table table-bordered">
+
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Item</th>
+                <th>Calories</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for data in today_consumed_data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ data.item_name }}</td>
+                <td>{{ data.calorie }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">No data found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
